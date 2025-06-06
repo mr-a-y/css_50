@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: After running all the test i found that sort 1 was one of the slowest to sort through the list of random numbers but one of the fastest when it come to sorting a already sorted array and the only algorithm which there best and worst case is widely different is Bubble sort
+
+sort2 uses: Merge Sort
+
+How do you know?: when sorting the list of random integers it was the fastest comparitivle to both other algorithms
+
+sort3 uses: Selection Sort
+
+How do you know?: when going through each array of random int's sort 3 and sort 1 were comparable in speed. However when going through a already sorted array sort 3 was the only one to keep the same time as before out of the 2 
