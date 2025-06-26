@@ -8,7 +8,7 @@ people = [
 
 name = input("give me name plz ")
 
-# x[y] = is how you look inside a dictionray
+# x[y["name"]] = is how you look inside a list of dictionaries
 
 for person in people:
     if person["names"] == name:
@@ -17,4 +17,4 @@ for person in people:
         break
 else:
     print("your not in this mf")
-
+# my_dict.update(new_data) or thisdict.update({"color": "red"}) to put add to dict
