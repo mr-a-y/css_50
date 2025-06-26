@@ -50,7 +50,7 @@ for _ in subdirs:
 
 
     # Deletes the file we crated 
-    os.remove(tmp_path)
+    #os.remove(tmp_path)
 
     # Conferation of that we deleted the file 
     print(f"Deleted: {tmp_path}")
