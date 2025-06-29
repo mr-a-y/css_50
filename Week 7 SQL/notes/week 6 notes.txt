@@ -1,0 +1,191 @@
+# flat file database → is a database where you use a text file to store your data 
+	
+# .csv → Comma Separated Values  could be used as a flat file data base with all values are separated by comma and into rows 
+	
+# .tsv → Tab Separated Value file similar to csv but data separated by tabs 
+	
+# meta-date → info about data given 
+
+	▸reader = csv.DictReader(file) → used to read csv file as dictionary where it reads the first line and gets the kabels and reads the data next as dictionairies where each key is 	that label
+	
+	▸ x, y, z = 0, 0, 0  → to initialise multiple variables 
+	
+# relational databases → data base where it allow's you to relate some of your data to other data 
+	
+# SQL → structured Query Language where you can CRUD data 
+	• Create, INSERT : CREATE TABLE table (column type, ...);
+	• Read (SELECT) : SELECT columns FROM table;
+	• Update : INSERT INTO table (column, ...) VALUES(value, ...); OR UPDATE table SET column = value WHERE condition;
+	• Delete, DROP : DELETE FROM table WHERE condition;
+	
+# Table → The SQL database table consists of rows and columns which are in simple terms sets of data ▸CREATE TABLE table (column type, )
+	
+# sqlite3 → light version of sql and stores all data in a file on hard drive and not needed to be run 24/7 like other sql languages (postgres/MySQL) 
+
+	▸  in CLI "sqlite3 name_of_database.db" → creating new data base 
+
+	▸ .mode csv → configuring SQLite to be able to read csv file and the "." is used to configure the SQLite program itself 
+	
+	▸ .import favorite.csv favorite → importing a csv file called "favorites.csv" into a table called "favorite" into the data base your in 
+	
+	▸ .quit → to exist the SQLite on the CLI
+	
+	▸.schema → shows the design of the data base
+
+		⁜ end all SQLite commands with ";"
+	
+	▸ CREATE TABLE IF NOT EXIST "favorite"( "time stamp" TEXT,  "language" TEXT,  "problem" TEXT); → create table if it doesn't exist with columns of those names contain TEXT datatype
+
+	▸ SELECT * FROM favorite; → gets all columns from the table favorites 
+	
+	▸ SELECT language FROM favorite; →  get only the column "laguages" from the table favorites 
+	
+	▸ SELECT COUNT(*) FROM favorite; → gets the amount of rows in the "favorite" table 
+
+	▸ SELECT DISTINCT language FROM favorite; → gets all the distinct values put in that column 
+
+	▸ SELECT COUNT(DISTINCT language) FROM favorite; → gets the count of number of distinct values found in in column of "languages"
+	
+	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c'; → to get the number of times where in the column of laguages we find "c"
+
+		⁜ for string vlues such as TEXT data type use single quotes ''
+	
+	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c' AND  problem = 'Hello world'; → gets the number of time a row had "c" and "hello world" in there respective column
+
+	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c' AND  problem = 'hello' or problem = 'hello it''s me'; → this is how to check with or similar to if statement
+
+		⁜ in SQLITE to use a single quote as a char in a string it gets double so " ' " you have to write " '' "
+
+	▸ SELECTR COUNT(*) FROM favorite WHERE language = 'c' and problem LIKE 'hello %'; → get count of rows where they have "c" and starts with "hello " and ends with anything 
+
+		⁜ % is used to determine anything after the "%" so "hello a" and "hello b" are to be TRUE  
+	
+	▸ SELECT language, COUNT(*) FROM favorite GROUP BY language; → gives 2 coloumn 1 for all all distinct values found in languages and the other is there count 
+
+	▸ SELECT language, COUNT(*) FROM favorite GROUP BY language ORDER BY COUNT(*); → "ORDER BY " give same data but now sorted by there counts from smalles to biggest as default
+
+	▸ SELECT language, COUNT(*) FROM favorite GROUP BY language ORDER BY COUNT(*) ASC; → "ORDER BY " give same data but now sorted by there counts from smalles to biggest
+
+	▸ SELECT language, COUNT(*) FROM favorite GROUP BY language ORDER BY COUNT(*) DESC; → "ORDER BY " give same data but now sorted by there counts from biggest to smallest
+	
+	▸ SELECT language, COUNT(*) AS n FROM favorite GROUP BY language ORDER BY n DESC; → does the same thing but now column name is "n"
+
+	▸ SELECT language, COUNT(*) AS n FROM favorite GROUP BY language ORDER BY n DESC LIMIT 1; → now just gives 1 row 
+
+		⁜ order of key words matter in SQL 
+
+	▸ INSERT INTO favorites (language, problem) VALUES('SQL', 'Fiftyville'); → creates new row where column of language has "SQL" and "Fiftyville" in problem and null for the others
+
+		⁜ NULL → is the abscence of data 
+
+	▸ DELETE FROM favorite WHERE timestmap IS NULL;  →  deletes all rows where the timestamp column is null 
+
+	▸ UPDATE favorite SET language = 'SQL', problem = 'fifty'; → now all rows will be updated and there column for problem and laguhage will be "SQL" and "fifty" 
+
+	▸ UPDATE favorite SET language = 'SQL', problem = 'fifty';
+
+# IMDB → Internet Movie Data Base and its downloadable in .tsv	
+
+# schema → design of a data base ⁂ fig 1)
+
+# relationships → are the connection between tables which are  :
+	• one to one → Each record in Table A is associated with one and only one record in Table B, and vice versa.
+	
+	• One-to-Many Relationship → Each Table A can be associated with multiple records in Table B, but each record in Table B is associated with only one record in Table A. ⁂ fig 4)
+	
+	• Many-to-Many Relationship → Each record in Table A can be associated with multiple records in Table B, and vice versa.
+
+		⁜ when a identifier is used in another table name it "table-name_column-name"
+
+# data types in sql :
+	• BLOB 	   →  stands for binairy large object used for storing large binary data 
+
+	• INTEGER  → same as int's therefore no decimals
+
+	• REAL     → same as floats therefore allows for decimal
+
+	• NUMERIC  → for dates, years and time
+
+	• TEXT     → just like strings 
+
+	• NOT NULL → used to make it so that row can't be NULL 
+
+	• UNIQUE   → added to show if row has to be unique		
+
+	
+	▸ how to create show table:
+		⁕ CREATE TABLE shows (   
+		  id INTEGER, 					→ integer is like int in python
+		  title TEXT NOT NULL, 				→ not null just means cant be empty 
+		  year NUMERIC, 				→ data type used for dates 
+		  PRIMARY KEY(id) 				→ unique identifier for the table rows which is id for this table 
+		  );
+
+		⁕ CREATE TABLE rating ( 
+		  show_id INTEGER NOT NULL, 			
+		  rating REAL NOT NULL, 			→ REAL is float and has decimal point 
+		  votes INTEGER NOT NULL,			
+		  FOREIGN KEY(show_id) REFERENCES show(id)	→ appearance of a primary key in some other table for the purpose of relating both tables 
+		  );		
+
+	▸ SELECT * FROM shows WHERE id IN (SELECT show_id FROM ratings WHERE rating >= 6.0) LIMIT 10; → how to use nested queries to get the list of show_id and translate it to get shows 
+	
+	▸ SELECT * FROM shows JOIN rating ON show.id = rating.show_id WHERE rating >= 6.0 LIMIT 10; → this how to join 2 tables where id and show_id are equal ⁂ Fig 2)
+	
+	▸ SELECT title, rating FROM shows JOIN rating ON show.id = rating.show_id WHERE rating >= 6.0 LIMIT 10; → now joins tables but show only the title and rating column ⁂ Fig 3)
+	
+# Join table → purpose of table is to implent relationship between 2 or more tables an example of this is the "stars" table ⁂ fig 5) 
+
+	▸ CREATE INDEX name ON table (column, ...); → creates an index table on that column given ⁂ Fig 6)
+
+# index table → is a separate data structure (think of it like the index in the back of a book) that lets SQLite find rows much more quickly than scanning every row in a table. It does 		this by creating a B-tree that turns slow full-table scans (O(N)) into fast tree lookups (O(log N)). But use only on read heavy tables because uses more space  
+
+# B-tree → self-balancing tree data structure that’s optimized for systems that read and write large blocks of data. generalizes the idea of a binary search tree to allow each node to have 	   many children, reducing the tree’s height and thus the number of expensive disk reads. ⁂ Fig 7)
+
+	▸ x = SQL("SQLite:///database.db") → to make reader for database.db 
+
+	▸ cs50.SQL.execute(sql, *args, **kwargs) → allows to execute sql code from python
+
+	° Parameters:	
+
+	
+		• sql 		→ a str that represents a single SQL statement, possibly with parameter markers, with or without a trailing semicolon
+
+		• *args 	→ zero or more positional arguments with which any parameter markers should be substituted
+
+		• **kwargs 	→ zero or more named arguments with which any parameter markers should be substituted
+
+	°° Returns :
+	
+		• CREATE 						→ True on success or False on failure
+
+		• DELETE 						→ the number of rows deleted
+
+		• INSERT 						→ the primary key of a newly inserted row (or None if none)
+
+		• SELECT 						→ list of dict objects, each of which represents a row in the result set
+
+		• UPDATE 						→ the number of rows updated
+
+		• integrity errors (as when a constraint is violated) 	→ a ValueError is raised
+
+		• other errors 						→ a RuntimeError is raised
+	
+ 
+
+	▸ rows = db.execute("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?", username, password) →  "?" is a place holder for values 
+
+# race condition → when trying to change a database at the same time creating issues way to solve that is bellow to "lock the database until done" :
+
+	db.execute("BEGIN TRANSACTION") 					→ this pause the query so that the next lines aren't executed 
+	rows = db.execute("SELECT likes FROM posts WHERE id = ?", id);		→ getting post dictionairy
+	likes = rows[0]["likes"]						→ adding number of likes on the post to variable "likes"
+	db.execute("UPDATE posts SET likes = ? WHERE id = ?", likes + 1, id);	→ updating the number of likes on the post by one
+	db.execute("COMMIT")							→ running all sql queries
+
+# SQL injections → where user enters a input to break data base like " malan@harvard.edu'--" this renders the right side of querie as comment to solve use place holders "?"
+
+			⁜ "--" → how to do comments in sql 
+
+
+
