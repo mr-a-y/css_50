@@ -1,0 +1,12 @@
+1)
+    +-------------------+--------------+-------------+
+    | AVG(danceability) | AVG(valence) | AVG(energy) |
+    +-------------------+--------------+-------------+
+    | 0.71646           | 0.484443     | 0.65906     |
+    +-------------------+--------------+-------------+
+
+        judging from the first 100 songs i see the users leans towards
+        a danceable song with a average amount of energy and with a not so happy or sad feeling to it
+2)
+    i think another way to calculate the aura is by also making it a weighted avergae because if he listened to
+    1 song 200 time and the other only 100 in this way both have the same sway but in reality one should have more weight to it

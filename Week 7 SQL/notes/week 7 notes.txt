@@ -52,7 +52,7 @@
 	
 	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c' AND  problem = 'Hello world'; → gets the number of time a row had "c" and "hello world" in there respective column
 
-	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c' AND  problem = 'hello' or problem = 'hello it''s me'; → this is how to check with or similar to if statement
+	▸ SELECT COUNT(*) FROM favorite WHERE language = 'c' AND  (problem = 'hello' OR problem = 'hello it''s me'); → this is how to check with or similar to if statement
 
 		⁜ in SQLITE to use a single quote as a char in a string it gets double so " ' " you have to write " '' "
 
