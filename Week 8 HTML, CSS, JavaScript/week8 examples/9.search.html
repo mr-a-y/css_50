@@ -1,0 +1,26 @@
+
+<!-- making a simple google search bar to redirect to googles search bar  -->
+<DOCTYPE html>
+    <html leng = "en">
+        <head>
+            <title>Search</title>
+        </head>
+        <body>
+            <form action = "https://www.google.com/search" method = "get">
+            <!-- "action" is a attribute that shows what link gets redericted too after clicking on submit -->
+            <!-- "method" is a attribute that shows what http method will be sent -->
+                <input autocomplete = "off" autofocus placeholder = "type anything" name = "q" type = "search">
+                <!-- this is how you create a input field for this case it is a seach bar -->
+                <!-- "autocomplete" is a attribute that allows for show previous stuff you entered  -->
+                <!-- "autofocus" is a attribute that makes it so that you dont need to click on it its clicked on from the get go  -->
+                <!-- "placeholder" is a attribute that put in a place holder value before you input that goes away after you type something  -->
+                <!-- "name" is a attribute that  is what the variable name of that value and shows up on top as "?name=input" after the url-->
+                <!-- "type" is a attribute that is the type of input  -->
+
+                <input type = "submit" value = "Google Search">
+                <!-- this is how to create a submit button and "value" is the name on it  -->
+            </form>
+            <!-- The <form> element is a container for different types of input elements-->
+        </body>
+    </html>
+</DOCTYPE>

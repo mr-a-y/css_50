@@ -1,0 +1,19 @@
+<DOCTYPE html>
+    <html leng = "en">
+        <head>
+            <title>Register</title>
+        </head>
+        <body>
+            <form>
+                <input autocomplete = "off" autofocus name = "phone" patern = "/d{3}-/d{3}-/d{4}" placeholder = "Phone" type = "">
+                <!-- here we use regular expression to validate under the "patern" attribute-->
+                 <!-- validating through html is a bad idea due to the ability of
+                  inspecting the page and taking it off then submitting the input that way-->
+
+                <button>Register</button>
+                <!-- can just make a button tag and it will be the submit button -->
+            </form>
+        </body>
+    </html>
+</DOCTYPE>
+<!-- "validator.w3.org" website to validate html page-->
