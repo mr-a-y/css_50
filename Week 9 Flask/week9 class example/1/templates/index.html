@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+        <form action = "/greet" method ="get">
+            <input  autocomeplete = "off" autofocus name = "name" placeholder = "Name" type = "text" >
+            <button type = "submit"> greet</button>
+        </form>
+{% endblock %}
