@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Sell{% endblock %}
+{% block main %}
+<h2>Sell your Shares of Stock</h2>
+
+<form action="/sell" method="post" class="d-flex flex-wrap justify-content-center align-items-center gap-2 mt-3">
+  <select name="symbol" class="form-select w-auto" required>
+    <option disabled selected value="">Symbol</option>
+    {% for x in symbols %}
+      <option value="{{ x.symbol }}">{{ x.symbol }}</option>
+    {% endfor %}
+  </select>
+
+  <input class="form-control w-auto" name="shares" placeholder="Number of Shares" required type="number" min="1" step="1">
+  <button class="btn btn-primary" type="submit">Sell</button>
+</form>
+{% endblock %}
