@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Teams 
+{% endblock %}
+
+
+
+{% block main %}
+<h3 class = "mb-3" > Add Teams</h3>
+
+  <form id="searchForm" method="get" action="/add" class="mb-4">
+    <div class="input-group">
+      <input id="q" type="text" name="q" value="{{ search }}" class="form-control" placeholder="Search teams…">
+      <button type="submit" class="btn btn-outline-primary">Search</button>
+    </div>
+  </form>
+ {% if teams %}
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for x in teams %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="/static/logos/{{x['url']}}" class="card-img-top p-3" alt="{{ x['full_name'] }}" style="height:160px;object-fit:contain;">
+          <div class="card-body">
+            <h5 class="card-title">{{ x['full_name'] }}</h5>
+
+            {% if x['in_my_teams'] %}
+              <button class="btn btn-success w-100" disabled>Added</button>
+            {% else %}
+              <form method="post" class="mt-3">
+                <input type="hidden" name="action" value="{{ x['team_id'] }}">
+                <button type="submit" class="btn btn-outline-success w-100">Add</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+ {% else %}
+ <h3 class = "mb-3" > No Teams Found</h3>
+ {% endif %}
+  </div>
+
+  <script>
+    (function () {
+      const input = document.getElementById('q');
+      const form  = document.getElementById('searchForm');
+      let timer;
+      input.addEventListener('input', function () {
+        clearTimeout(timer);
+        timer = setTimeout(() => form.submit(), 300); 
+      });
+    })();
+  </script>
+
+
+{% endblock %}

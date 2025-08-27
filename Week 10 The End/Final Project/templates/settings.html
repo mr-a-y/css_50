@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+<h3 class = "mb-3" >Settings</h3>
+
+<div class="d-grid gap-3 col-2 mx-auto">
+  <button class="btn btn-primary" onclick="window.location.href='/password'"> change Password</button>
+  <button class="btn btn-primary" type="button" onclick="window.location.href='/username'">Change Username</button>
+</div>
+
+
+
+{% endblock %}

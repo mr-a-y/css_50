@@ -1,0 +1,92 @@
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        
+        <link href="/static/basketball.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+        <script>
+            (function () {
+                const t = localStorage.getItem('theme');
+                if (t) document.documentElement.setAttribute('data-bs-theme', t);
+            })();
+        </script>
+
+        
+
+        <title>C$50 Sports: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Final Project</span></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav me-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/add">Add Team</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/remove">Remove Team</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/settings"> <img src="/static/gear.ico" alt="" width="16" height="16" class="me-2"></a></li>
+                            <li class="nav-item me-2">
+                                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary" type="button"
+                                        aria-label="Toggle color mode">
+                                <span id="theme-toggle-icon">🌙</span>
+                                </button>
+                            </li> 
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                            <li class="nav-item me-2">
+                                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary" type="button"
+                                        aria-label="Toggle color mode">
+                                <span id="theme-toggle-icon">🌙</span>
+                                </button>
+                            </li>
+                            
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-center">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category or 'info' }} alert-dismissible fade show shadow" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="/static/theme-toggle.js"> </script>
+    </body>
+
+
+</html>

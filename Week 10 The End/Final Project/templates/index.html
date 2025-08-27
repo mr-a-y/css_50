@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Teams
+{% endblock %}
+
+{% block main %}
+
+<div class="container my-3">
+  <h4 class="text-center mb-3">{{ current_date_display }}</h4>
+  <form method="post" class="d-flex justify-content-center">
+    <div class="input-group" style="max-width: 360px;">
+      <button class="btn btn-outline-primary" type="submit" name="action" value="prev">&lt;</button>
+      <input type="date" class="form-control text-center" name="date" value="{{ current_date_raw }}" onchange="this.form.submit()">
+      <button class="btn btn-outline-primary" type="submit" name="action" value="next">&gt;</button>
+    </div>
+  </form>
+</div>
+
+{% if teams %}
+    <table class = "table table-bordered table-striped">
+        <thead class = "thead-light">
+            <tr>
+                <th>Home</th>
+                <th>Away</th>
+                <th>Time</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for x in teams %}
+            <tr>
+        <td>
+          <div class="card" style="width: 18rem;">
+            <img src="/static/logos/{{x.home_url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{x.home_full_name}}</p>
+             </div>
+            </div>
+        </td>
+        <td>
+          <div class="card" style="width: 18rem;">
+            <img src="/static/logos/{{x.away_url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{x.away_full_name}}</p>
+             </div>
+            </div>
+        </td>
+        <td>{{x.time}}</td>
+        <td>{{x.score}}</td>
+      </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+<h3> No Games </h3>
+{% endif %}
+
+
+{% endblock %}

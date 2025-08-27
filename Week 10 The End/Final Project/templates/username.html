@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Username
+{% endblock %}
+
+{% block main %}
+    <h3 class = "mb-3" >Change Username</h3>
+
+    <form action="/username" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="old" placeholder="Old Username" required type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="username" placeholder=" New Username" required type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm Username" required type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Change Username</button>
+    </form>
+{% endblock %}
